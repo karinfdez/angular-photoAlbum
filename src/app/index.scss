@@ -27,12 +27,19 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   }
 }
 
-// .card{
-  
-//   float:left;
-//   width:280px;
-//   margin-right:50px;
-// }
+.card{
+  min-height:200px;
+  margin-bottom:20px;
+}
+
+input.userInput{
+  border: 1px solid black;
+  // width:50%;
+  border-radius:4px;
+}
+.no-criteria{
+  text-align:center;
+}
 
 
 /**
