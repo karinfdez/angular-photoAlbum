@@ -1,0 +1,20 @@
+
+<div class="container">
+  <div class="row">
+    <div ng-init="albums=[{name: 'Madrid2009',title:'Weekend in Madrid',date:'2009-09-01',description:'Fun weekend visiting the city'},
+                            {name: 'Brazil2010',title:'A week in Rio de Janeiro',date:'2010-05-23',description:'Week with friends and family'},
+                            {name: 'Cuba2011',title:'Visiting Habana',date:'2011-10-10',description:'Havana with my parents'},{name: 'Egypt2012',title:'Visitng El Cairo',date:'2011-11-01',description:'Amazing piramides'}]">   
+      <div class=col-xs-12>
+        <p>There are {{albums.length}} album(s) to view</p>
+      </div> 
+    </div>
+    <input type="text" ng-model='userSearch' >
+    <div class="row">
+        <div class="col-xs-3" ng-repeat="album in albums | filter: userSearch | orderBy: 'date'" ng-class-even="'even'" ng-class-odd="'odd'">          
+            <p>{{$index+1}}) {{album.name}} ({{album.date}})</p>
+            <p>{{album.title | uppercase}}</p>
+            <p>{{album.description}}</p>   
+       </div>
+    </div>    
+</div>
+ 
