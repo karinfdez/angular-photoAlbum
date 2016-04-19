@@ -29,10 +29,14 @@
      </div> 
 
      <h3>Add new album:</h3>
-     <div class="album panel panel-default row">
+
+  <form name="album_form" novalidate>  
+    <div class="album panel panel-default row">
        <div class="panel-heading" >
+       <div class="alert alert-danger" role="alert" ng-show="main.add_album_error">{{main.album_error}}</div>
+       <div class="alert alert-success" role="alert" ng-show="main.add_album_success">{{main.album_error}}</div>
         <div style="float:right">
-          <input type="text" class="input_date" placeholder="yyyy/mm/dd" ng-model="main.adding_album.date"/>
+          <input name="date" type="text" class="input_date" placeholder="yyyy/mm/dd" ng-model="main.adding_album.date"/>
         </div>
         <!-- <div style="float:left"> -->
            <input type="text" class="input_title" placeholder="Title..." ng-model="main.adding_album.name"/>
@@ -47,7 +51,8 @@
        <!-- In order to remove the floating on the button -->
        <div style="clear:left"></div>
        <button class="submit-button" ng-click="main.addAlbum(main.adding_album)" type="submit" >Submit</button>
-     </div>
+    </div>
+  </form>
  </div>  
 
  

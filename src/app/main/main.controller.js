@@ -8,17 +8,40 @@
   /** @ngInject */
   function MainController($timeout, webDevTec) {
     var vm = this;
-
-
-    vm.albums=[{name: 'Madrid2009',title:'Weekend in Madrid',date:'2009-09-01',description:'Fun weekend visiting the city'},
-               {name: 'Brazil2010',title:'A week in Rio de Janeiro',date:'2010-05-23',description:'Week with friends and family'},
-               {name: 'Cuba2011',title:'Visiting Habana',date:'2011-10-10',description:'Havana with my parents'},
-               {name: 'Egypt2012',title:'Visitng El Cairo',date:'2011-11-01',description:'Amazing piramides'}];
+    vm.album_error="";
+    vm.add_album_error=false;
+    vm.adding_album={};
+    vm.albums=[{name: 'Madrid2009',date:'2009-09-01',description:'Fun weekend visiting the city'},
+               {name: 'Brazil2010',date:'2010-05-23',description:'Week with friends and family'},
+               {name: 'Cuba2011',date:'2011-10-10',description:'Havana with my parents'},
+               {name: 'Egypt2012',date:'2011-11-01',description:'Amazing piramides'}];
     
     vm.addAlbum=function(new_album){
-      vm.albums.push(new_album);
-      vm.adding_album={};
-    }
+      if (!new_album.name && (!new_album.date || new_album.date.length<10) && !new_album.description){
+        vm.add_album_error=true;
+        vm.album_error="Incorrect input for title,date and description.Try again"
+      }
+      else if  (!new_album.name){
+        vm.add_album_error=true;
+        vm.album_error="Missing title";
+      }
+      else if(!new_album.date || new_album.date.length<10){
+        vm.add_album_error=true;
+        vm.album_error="Incorrect Date";
+      }
+      else if(!new_album.description){
+        vm.album_error="Missing Description";
+      }
+      else{
+        vm.albums.push(new_album);
+        vm.adding_album={};
+        vm.add_album_error=false;
+        vm.add_album_success=true;
+        vm.album_error="Thanks.Your album has been added."
+        $timeout(function(){
+            vm.add_album_success=false;
+         }, 5000);
+     }
     // vm.awesomeThings = [];
     // vm.classAnimation = '';
     // vm.creationDate = 1460392585454;
@@ -45,5 +68,6 @@
     //     awesomeThing.rank = Math.random();
     //   });
     // }
+    }
   }
 })();
