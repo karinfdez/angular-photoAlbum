@@ -41,6 +41,33 @@ input.userInput{
   text-align:center;
 }
 
+.album.panel{
+  width:50%;
+}
+
+input.input_date{
+  float:right;
+  width:80%;
+}
+input.input_title{
+  width:50%;
+}
+
+textarea.input_description{
+  height:100px;
+  margin:40px 0;
+  max-width:350px;
+  border-radius: 3px;
+}
+.submit-button{
+  display:block;
+  margin:0 auto;
+  margin-bottom:40px;
+}  
+
+// .input_name{
+//   padding-top:20px;
+// }
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject

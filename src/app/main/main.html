@@ -27,6 +27,27 @@
          <div class="no-criteria" ng-show="!albums.length">No album match that criteria</div>
       </div>
      </div> 
+
+     <h3>Add new album:</h3>
+     <div class="album panel panel-default row">
+       <div class="panel-heading" >
+        <div style="float:right">
+          <input type="text" class="input_date" placeholder="yyyy/mm/dd" ng-model="main.adding_album.date"/>
+        </div>
+        <!-- <div style="float:left"> -->
+           <input type="text" class="input_title" placeholder="Title..." ng-model="main.adding_album.name"/>
+        <!-- </div> -->
+       </div>
+      <!--  <div class="input_name col-xs-8 col-xs-offset-2">
+         <input type="text" placeholder="Album's name...">
+       </div> -->
+       <div class="description col-xs-8 col-xs-offset-2">
+         <textarea class="input_description" ng-model="main.adding_album.description" placeholder="Description...."></textarea>
+       </div>
+       <!-- In order to remove the floating on the button -->
+       <div style="clear:left"></div>
+       <button class="submit-button" ng-click="main.addAlbum(main.adding_album)" type="submit" >Submit</button>
+     </div>
  </div>  
 
  
