@@ -17,7 +17,7 @@
                {name: 'Egypt2012',date:'2011-11-01',description:'Amazing piramides'}];
     
     vm.addAlbum=function(new_album){
-      if (!new_album.name && (!new_album.date || new_album.date.length<10) && !new_album.description){
+      if (!new_album.name && (!new_album.date || !(is_valid_date(new_album.date))) && !new_album.description){
         vm.add_album_error=true;
         vm.album_error="Incorrect input for title,date and description.Try again"
       }
@@ -25,7 +25,7 @@
         vm.add_album_error=true;
         vm.album_error="Missing title";
       }
-      else if(!new_album.date || new_album.date.length<10){
+      else if(!new_album.date || !(is_valid_date(new_album.date))){
         vm.add_album_error=true;
         vm.album_error="Incorrect Date";
       }
@@ -42,32 +42,16 @@
             vm.add_album_success=false;
          }, 5000);
      }
-    // vm.awesomeThings = [];
-    // vm.classAnimation = '';
-    // vm.creationDate = 1460392585454;
-    // vm.showToastr = showToastr;
+    
+    }
 
-    // activate();
+    function is_valid_date(the_date){
+      // For the first part I want digits from 0-9 and accept from 2 to 4 characters long.
+      // I'm using '/' to separate the date but it could be '-'
+      if (the_date.match(/^[0-9]{2,4}\/[0-9]{1,2}\/[0-9]{1,2}^/))
+        return true;
 
-    // function activate() {
-    //   getWebDevTec();
-    //   $timeout(function() {
-    //     vm.classAnimation = 'rubberBand';
-    //   }, 4000);
-    // }
-
-    // function showToastr() {
-    //   toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-    //   vm.classAnimation = '';
-    // }
-
-    // function getWebDevTec() {
-    //   vm.awesomeThings = webDevTec.getTec();
-
-    //   angular.forEach(vm.awesomeThings, function(awesomeThing) {
-    //     awesomeThing.rank = Math.random();
-    //   });
-    // }
+      return false;
     }
   }
 })();
