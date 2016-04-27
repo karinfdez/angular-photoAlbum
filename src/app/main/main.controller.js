@@ -30,6 +30,7 @@
         vm.album_error="Incorrect Date";
       }
       else if(!new_album.description){
+        vm.add_album_error=true;
         vm.album_error="Missing Description";
       }
       else{
@@ -48,8 +49,15 @@
     function is_valid_date(the_date){
       // For the first part I want digits from 0-9 and accept from 2 to 4 characters long.
       // I'm using '/' to separate the date but it could be '-'
-      if (the_date.match(/^[0-9]{2,4}\/[0-9]{1,2}\/[0-9]{1,2}^/))
-        return true;
+      // ^ This make sure this is the structure from the beginning to end(avoid different structure
+      //at the beginning or at the end of expression).
+      //[\-\/\. ,]  This let me use - / . or , on the date(Makes date more flexible)
+      if (the_date.match(/^[0-9]{2,4}[\-\/\. ,][0-9]{1,2}[\-\/\. ,][0-9]{1,2}$/)){
+        var d= new Date(the_date);
+        return !isNaN(d.getTime());
+      }else{
+        return false;
+      }
 
       return false;
     }
